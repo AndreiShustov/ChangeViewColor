@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var redValueLabel: UILabel!
     @IBOutlet var greenValueLabel: UILabel!
     @IBOutlet var blueValueLabel: UILabel!
-        
+    
     @IBOutlet var redSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
@@ -23,36 +23,31 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colorView.layer.cornerRadius = 10
+        colorView.layer.cornerRadius = 15
         
-        redValueLabel.text = String(format: "%.2f",redSlider.value)
-        greenValueLabel.text = String(format: "%.2f", greenSlider.value)
-        blueValueLabel.text = String(format: "%.2f", blueSlider.value)
+        changeRGBLabels()
         
         changeColorOfView()
     }
-
-    @IBAction func redSliderAction() {
+    
+    @IBAction func rgbSliderAction() {
+        changeRGBLabels()
+        changeColorOfView()
+    }
+    
+    private func changeRGBLabels() {
         redValueLabel.text = String(format: "%.2f",redSlider.value)
-        changeColorOfView()
-    }
-    
-    @IBAction func greenSliderAction() {
         greenValueLabel.text = String(format: "%.2f", greenSlider.value)
-        changeColorOfView()
-    }
-    
-    @IBAction func blueSliderAction() {
         blueValueLabel.text = String(format: "%.2f", blueSlider.value)
-        changeColorOfView()
     }
     
     private func changeColorOfView() {
-        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
-        green: CGFloat(greenSlider.value),
-        blue: CGFloat(blueSlider.value),
-        alpha: 1.0)
-        
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
     }
 }
 
